@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* auto fill se data white background mn arha tha, it will override the default style, for dark mode */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  -webkit-text-fill-color: white;
+}
+
+/* if we are using dark mode
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: black;
+} */
