@@ -64,7 +64,7 @@ const TaskCreaterForm = () => {
                         <textarea
                             value={description}
                             onChange={(e) => { setDescription(e.target.value) }}
-                            className='w-full h-full p-2 border-2 border-gray-400 rounded outline-none' placeholder='Enter Task Description'></textarea>
+                            className='w-full h-full p-2 border-2 border-gray-600 rounded outline-none' placeholder='Enter Task Description'></textarea>
                     </div>
                     <button
                         disabled={!title || !date || !assign || !category || !description}
