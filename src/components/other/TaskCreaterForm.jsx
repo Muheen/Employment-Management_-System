@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { AuthContext } from '../../context/AuthProvider'
 
 const TaskCreaterForm = () => {
+
+    const { employeeData } = useContext(AuthContext)
 
     const [title, setTitle] = useState('')
     const [date, setDate] = useState('')
     const [assign, setAssign] = useState('')
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
-
+    
+    
+    const tarEmp = employeeData.find((e) => e.id === assign)
+    
     const submitHandler = (e) => {
         e.preventDefault()
         console.log('form is submit')

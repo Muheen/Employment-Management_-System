@@ -216,3 +216,11 @@ export const setData = () => {
     localStorage.setItem('employee', JSON.stringify(employeeData))
     localStorage.setItem('admin', JSON.stringify(adminData))
 }
+export const getData = () => {
+    const employee = localStorage.getItem('employee')
+    const admin = localStorage.getItem('admin')
+    return {
+        employee: employee ? JSON.parse(employee) : employeeData,
+        admin: admin ? JSON.parse(admin) : adminData
+    }
+}

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 export const AuthContext = createContext()
-export const activeEmpContext = createContext()
+export const activeUserContext = createContext()
 
 const AuthProvider = (props) => {
 
@@ -8,7 +8,7 @@ const AuthProvider = (props) => {
 
   const [employeeData, setEmployeeData] = useState([])
   const [adminData, setAdminData] = useState([])
-  const [activeEmp, setActiveEmp] = useState([])
+  const [activeUser, setActiveUser] = useState(null)
 
   useEffect(() => {
     // console.log('useEffect called')
@@ -23,9 +23,9 @@ const AuthProvider = (props) => {
   return (
     <div>
       <AuthContext.Provider value={{ employeeData, adminData }}>
-        <activeEmpContext.Provider value={{ activeEmp, setActiveEmp }}>
+        <activeUserContext.Provider value={{ activeUser, setActiveUser }}>
           {props.children}
-        </activeEmpContext.Provider>
+        </activeUserContext.Provider>
       </AuthContext.Provider>
     </div>
   )

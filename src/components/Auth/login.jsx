@@ -1,24 +1,28 @@
 import React from 'react'
 import { useState } from 'react'
 
-const login = ({user}) => {
+const login = ({ user }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('btn')
         // console.log(email, password)
         setEmail('')
         setPassword('')
-        user(email,password)
+        user(email, password)
         // userData({email, password})
     }
 
     return (
         <div className='bg-black text-white flex h-screen w-screen justify-center items-center'>
             <div className='border-2 border-green-500 rounded-2xl p-20'>
+                <div className='absolute top-40'>
+                    <h1>admin@example.com</h1>
+                    <h1>employee1@example.com</h1>
+                    <h1>123</h1>
+                </div>
                 <form
                     onSubmit={(e) => submitHandler(e)}
                     className='flex flex-col justify-center items-center gap-6'>
