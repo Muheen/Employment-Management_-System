@@ -1,10 +1,10 @@
-import React, { use, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import Login from './components/Auth/login'
 import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
 import AdminDashboard from './components/Dashboard/AdminDashboard'
-import { setData } from './utils/localStorage'
 import { AuthContext } from './context/AuthProvider'
 import { activeUserContext } from './context/AuthProvider'
+import { setData } from './utils/LocalStorage'
 
 const App = () => {
 
@@ -24,10 +24,11 @@ const App = () => {
     const admin = adminData.find(adm => adm.email === email && adm.password === password)
 
     if (admin) {
-      setActiveUser({role: 'admin', admin})
+      setActiveUser({ role: 'admin', admin })
       // console.log('Admin logged in', admin)
     } else if (employee) {
-      setActiveUser({role: 'employee', employee})
+      const emp = employeeData.find(emp => emp.id === employee.id);
+      setActiveUser({ role: 'employee', employee })
       // console.log('Employee logged in', employee)
     } else {
       alert('Invalid credentials')

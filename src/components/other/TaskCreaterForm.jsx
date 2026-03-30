@@ -1,29 +1,46 @@
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
+import { updateData } from '../../utils/LocalStorage'
 
 const TaskCreaterForm = () => {
 
-    const { employeeData } = useContext(AuthContext)
+    const { employeeData, setEmployeeData } = useContext(AuthContext)
+    // const [task, setTask] = useState([])
 
     const [title, setTitle] = useState('')
     const [date, setDate] = useState('')
     const [assign, setAssign] = useState('')
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
-    
-    
-    const tarEmp = employeeData.find((e) => e.id === assign)
-    
-    const submitHandler = (e) => {
-        e.preventDefault()
-        console.log('form is submit')
-        setTitle('')
-        setDate('')
-        setAssign('')
-        setCategory('')
-        setDescription('')
-    }
 
+
+    const submitHandler = (e) => {
+
+        e.preventDefault()
+        console.log("form is submit")
+
+        // New task object banao
+        const newTask = {
+            title,
+            date,
+            assign,
+            category,
+            description,
+            newTask: true,
+            active: false,
+            completed: false,
+            failed: false
+        }
+        // State update
+        // setTask(prev => [...prev, newTask])
+
+        // LocalStorage update (IMPORTANT FIX), updateData latest data update bhi kr rha hai
+        const updatedEmployees = updateData(newTask)
+        setEmployeeData(updatedEmployees)
+
+        setTitle(''), setAssign(''), setCategory(''), setDate(''), setDescription('')
+
+    }
     return (
         <div className='px-8 py-4'>
             <form

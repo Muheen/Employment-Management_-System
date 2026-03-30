@@ -1,17 +1,18 @@
-import React from 'react'
 import { useContext } from 'react'
 import { activeUserContext } from '../../context/AuthProvider'
 
 const Header = () => {
     console.log()
 
-    const { activeUser, setActiveUser } = useContext(activeUserContext)
+    const { activeUser , setActiveUser } = useContext(activeUserContext)
+    // console.log(activeUser.employee.tasks[0].name)
+
     // console.log(activeUser)
 
     return (
         <div>
             <div className='flex justify-between items-center px-8 py-6 bg-black text-white'>
-                <h3 className='flex flex-col font-bold'>Hello <span className='text-3xl'>{!activeUser.tasks ? 'Admin' : activeUser.tasks[0].name}👋</span></h3>
+                <h3 className='flex flex-col font-bold'>Hello <span className='text-3xl'>{activeUser.role === 'employee' ? activeUser.employee.name : 'Admin'}👋</span></h3>
                 <button
                     onClick={() => {
                         localStorage.removeItem('activeUser')

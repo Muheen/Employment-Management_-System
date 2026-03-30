@@ -1,7 +1,7 @@
-
 const employeeData = [
   {
     id: 1,
+    name: "Ali Raza",
     email: "employee1@example.com",
     password: "123",
     tasks: [
@@ -43,6 +43,7 @@ const employeeData = [
 
   {
     id: 2,
+    name: "Ahmed Khan",
     email: "employee2@example.com",
     password: "123",
     tasks: [
@@ -84,6 +85,7 @@ const employeeData = [
 
   {
     id: 3,
+    name: "Usman Tariq",
     email: "employee3@example.com",
     password: "123",
     tasks: [
@@ -125,6 +127,7 @@ const employeeData = [
 
   {
     id: 4,
+    name: "Hussain",
     email: "employee4@example.com",
     password: "123",
     tasks: [
@@ -166,6 +169,7 @@ const employeeData = [
 
   {
     id: 5,
+    name: "Hassan Ali",
     email: "employee5@example.com",
     password: "123",
     tasks: [
@@ -205,22 +209,40 @@ const employeeData = [
     ]
   }
 ];
-
 const adminData = [{
-    "id": 0,
-    "email": "admin@example.com",
-    "password": "123"
+  "id": 0,
+  "email": "admin@example.com",
+  "password": "123"
 }]
 
 export const setData = () => {
-    localStorage.setItem('employee', JSON.stringify(employeeData))
-    localStorage.setItem('admin', JSON.stringify(adminData))
+  localStorage.setItem('employee', JSON.stringify(employeeData))
+  localStorage.setItem('admin', JSON.stringify(adminData))
 }
+
+export const updateData = (task) => {
+
+  let employee = JSON.parse(localStorage.getItem('employee'))
+
+  if (!employee) return
+  const assignee = employee.find(emp => emp.id == Number(task.assign))
+
+  // console.log("Assignee:", assignee)
+
+  if (assignee) {
+    assignee.tasks.push(task)
+    localStorage.setItem('employee',JSON.stringify(employee))
+  }
+  
+  return employee
+
+}
+
 export const getData = () => {
-    const employee = localStorage.getItem('employee')
-    const admin = localStorage.getItem('admin')
-    return {
-        employee: employee ? JSON.parse(employee) : employeeData,
-        admin: admin ? JSON.parse(admin) : adminData
-    }
+  const employee = localStorage.getItem('employee')
+  const admin = localStorage.getItem('admin')
+  return {
+    employee: employee ? JSON.parse(employee) : employeeData,
+    admin: admin ? JSON.parse(admin) : adminData
+  }
 }
